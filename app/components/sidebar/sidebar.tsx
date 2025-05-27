@@ -212,24 +212,36 @@ export default function Sidebar() {
 
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex flex-col bg-white border-r border-gray-200 transition-all duration-300 ease-in-out",
+          "fixed inset-y-0 left-0 z-50 flex flex-col bg-white border-r border-gray-200 transition-all duration-500 ease-in-out",
           isSidebarOpen ? "w-64" : "w-16",
           "md:relative md:z-0",
         )}
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+          <h2
+            className={cn(
+              "text-lg font-semibold transition-all duration-300 overflow-hidden whitespace-nowrap",
+              isSidebarOpen ? "opacity-100 max-w-full" : "opacity-0 max-w-0"
+            )}
+          >
+            Admin Panel
+          </h2>
 
-          <div className="text-lg font-semibold">
-            {isSidebarOpen ? <h2 className="transition-opacity">Popular - Safi</h2> : <span className="transition-opacity w-full mx-auto pr-4">P.S.</span>}
-          </div>
           <button
             onClick={toggleSidebar}
-            className="p-1 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+            className="p-1 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-transform duration-300"
           >
-            {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <span
+              className={cn(
+                "block transition-transform duration-1000",
+                isSidebarOpen ? "rotate-90" : "rotate-0"
+              )}
+            >
+              {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </span>
           </button>
         </div>
-        <nav className="flex-1 overflow-y-auto py-4 px-2">{menuItems.map(renderMenuItem)}</nav>
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-4 px-2">{menuItems.map(renderMenuItem)}</nav>
       </aside>
     </>
   )
